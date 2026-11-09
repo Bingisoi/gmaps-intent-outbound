@@ -1,0 +1,23 @@
+{
+  "client": {
+    "name": "Example Co",
+    "website": "https://example.com",
+    "sender_first_name": "Alex",
+    "offer": "Missed-call text-back and online booking for local service businesses",
+    "one_line_pitch": "We make sure every call and booking request gets an instant reply, even after hours."
+  },
+  "search": { "query": "plumber", "location": "Austin, TX", "max_places": 40, "max_reviews": 30 },
+  "filters": { "min_reviews": 15, "min_rating": 3.5, "require_website_or_email": true, "exclude_name_patterns": ["^Roto-Rooter", "^Mr\\. Rooter"] },
+  "signals": [
+    { "id": "unanswered_calls", "label": "Calls go unanswered", "description": "Customers say they could not reach the business, got voicemail, or never got a callback.", "weight": 3, "keywords": ["voicemail", "no answer", "never answered", "didn't call back", "did not call back", "couldn't get through", "no response"] },
+    { "id": "slow_response", "label": "Slow replies or scheduling", "description": "Customers mention slow replies, long waits for an appointment, or hard-to-book schedules.", "weight": 2, "keywords": ["took days", "slow to respond", "hard to schedule", "booked out", "weeks to get", "waited"] },
+    { "id": "after_hours_demand", "label": "Emergency or after-hours demand", "description": "Customers needed help at night, weekends or in an emergency (shows after-hours volume).", "weight": 2, "keywords": ["after hours", "weekend", "midnight", "emergency", "at night", "sunday"] },
+    { "id": "growth_busy", "label": "Busy or growing", "description": "Reviews mention the team being busy, a new location, new trucks, or rapid growth.", "weight": 1.5, "keywords": ["so busy", "growing", "new location", "expanded", "fully booked"] },
+    { "id": "praised_but_overloaded", "label": "Great service but stretched", "description": "Positive reviews that also mention being hard to reach or hard to schedule because they are in demand.", "weight": 2, "keywords": ["worth the wait", "in demand", "hard to get on the schedule"] },
+    { "id": "closing_or_sold", "label": "Closing or sold", "description": "Reviews mention the business closed, was sold, or changed ownership recently.", "weight": -5, "keywords": ["closed down", "under new ownership", "went out of business"] }
+  ],
+  "scoring": { "high_min": 6, "medium_min": 3, "cap_per_signal": 2, "recency": { "d90": 1.0, "d365": 0.6, "older": 0.3 }, "undated": 0.5 },
+  "verification": { "provider": "millionverifier", "tiers": ["high", "medium"] },
+  "instantly": { "timezone": "America/Chicago", "send_from": "09:00", "send_to": "16:30", "tiers": ["high", "medium"] },
+  "crm": { "type": "csv" }
+}
